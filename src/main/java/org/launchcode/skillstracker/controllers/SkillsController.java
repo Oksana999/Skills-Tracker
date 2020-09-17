@@ -14,26 +14,32 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SkillsController {
 
+   @GetMapping()
+   @ResponseBody
+   public String skillList(){
+      return "<h1>Skills Tracker</h1>"+
+              "<h2>These are some skills</h2>"+
+              "<ol>"+
+              "<li><b>Java</b></li>"+
+              "<li><b>C++</b></li>"+
+              "<li><b>Kotlin</b></li>"+
+              "</ol>";
+   }
+
    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "skills")
    @ResponseBody
    public String skillsWithQueryParam(@RequestParam String name, @RequestParam String language1,
                                       @RequestParam String language2, @RequestParam String language3){
       String str = null;
 
-     str =  "Name: \n"+name+"\n"+"My favorite language:\n"+language1+"\n"+
-              "My second favorite language: \n"+language2+"\n"+
-              "My third favorite language: \n"+language3+"\n";
+     str =  "<h1>"+ name + "</h1><br>" +
+            "<li>" + language1 + "</li>" +
+            "<li>" + language2 + "</li>" +
+            "<li>" + language3 + "</li>" +
+            "</ol>";
       return str;
    }
-//   @GetMapping("skills/{name}/{language1}/{language2}/{language3}")
-//   @ResponseBody
-//   public String skillsWithParam(@PathVariable String name, @PathVariable String language1,
-//                                 @PathVariable String language2, @PathVariable String language3){
-//      return "Name: \n"+name+"\n"+"My favorite language:\n"+language1+"\n"+
-//              "My second favorite language: \n"+language2+"\n"+
-//              "My third favorite language: \n"+language3+"\n";
-//
-//   }
+
 
    @GetMapping("form")
    @ResponseBody
@@ -46,7 +52,7 @@ public class SkillsController {
               "<label>My favorite language:</label><br>"+
               "<select name = 'language1'><br>"+
               "<option value = 'Java' selected>Java</option>"+
-              "<option value = 'JavaScript'>Java Script</option>"+
+              "<option value = 'Kotlin'>Kotlin Script</option>"+
               "<option value = 'C++'>C++</option>"+
               "</select><br>"+
               "<label>My second favorite language:</label><br>"+
